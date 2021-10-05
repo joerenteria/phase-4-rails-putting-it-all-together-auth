@@ -1,6 +1,6 @@
 # Putting it All Together: Auth
 
-## Learning Goals
+## Learning Goals..
 
 - Authenticate a user with a username and password
 - Authorize logged in users for specific actions
