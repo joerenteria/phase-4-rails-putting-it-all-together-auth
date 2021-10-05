@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Box, Button } from "../styles";
 
-function RecipeList() {
+function RecipeList({user}) {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -12,6 +12,14 @@ function RecipeList() {
       .then((r) => r.json())
       .then(setRecipes);
   }, []);
+
+  function handleDelete(id) {
+    fetch(`/recipes/${id}`, {
+      method: "DELETE",
+    }).then(console.log("delete"));
+  }
+
+
 
   return (
     <Wrapper>
@@ -21,19 +29,20 @@ function RecipeList() {
             <Box>
               <h2>{recipe.title}</h2>
               <p>
-                <em>Time to Complete: {recipe.minutesToComplete} minutes</em>
+                <em>Rating: {recipe.minutesToComplete} minutes</em>
                 &nbsp;·&nbsp;
                 <cite>By {recipe.user.username}</cite>
               </p>
               <ReactMarkdown>{recipe.instructions}</ReactMarkdown>
+              <Button onClick={() => handleDelete(recipe.id)}>Delete</Button>
             </Box>
           </Recipe>
         ))
       ) : (
         <>
-          <h2>No Recipes Found</h2>
+          <h2>None Found</h2>
           <Button as={Link} to="/new">
-            Make a New Recipe
+            Make new
           </Button>
         </>
       )}

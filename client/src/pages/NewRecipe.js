@@ -5,18 +5,13 @@ import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
 function NewRecipe({ user }) {
-  const [title, setTitle] = useState("My Awesome Recipe");
-  const [minutesToComplete, setMinutesToComplete] = useState("30");
-  const [instructions, setInstructions] = useState(`Here's how you make it.
-  
-## Ingredients
-
-- 1c Sugar
-- 1c Spice
-
-## Instructions
-
-**Mix** sugar and spice. _Bake_ for 30 minutes.
+  const [title, setTitle] = useState("Park name");
+  const [minutesToComplete, setMinutesToComplete] = useState("5");
+  const [instructions, setInstructions] = useState(`
+  The wild and untamed landscape of southern Utah contains some of the most 
+  rugged and inaccessible terrain in the country. Visitors to this area are 
+  awestruck by the enormity of the landscape – its vast size and colossal 
+  dimensions are overwhelming to the senses. 
   `);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +43,7 @@ function NewRecipe({ user }) {
   return (
     <Wrapper>
       <WrapperChild>
-        <h2>Create Recipe</h2>
+        <h2>Create Entry</h2>
         <form onSubmit={handleSubmit}>
           <FormField>
             <Label htmlFor="title">Title</Label>
@@ -60,7 +55,7 @@ function NewRecipe({ user }) {
             />
           </FormField>
           <FormField>
-            <Label htmlFor="minutesToComplete">Minutes to complete</Label>
+            <Label htmlFor="minutesToComplete">Rating</Label>
             <Input
               type="number"
               id="minutesToComplete"
@@ -69,7 +64,7 @@ function NewRecipe({ user }) {
             />
           </FormField>
           <FormField>
-            <Label htmlFor="instructions">Instructions</Label>
+            <Label htmlFor="instructions">Comments</Label>
             <Textarea
               id="instructions"
               rows="10"
@@ -79,7 +74,7 @@ function NewRecipe({ user }) {
           </FormField>
           <FormField>
             <Button color="primary" type="submit">
-              {isLoading ? "Loading..." : "Submit Recipe"}
+              {isLoading ? "Loading..." : "Submit Entry"}
             </Button>
           </FormField>
           <FormField>
@@ -92,7 +87,7 @@ function NewRecipe({ user }) {
       <WrapperChild>
         <h1>{title}</h1>
         <p>
-          <em>Time to Complete: {minutesToComplete} minutes</em>
+          <em>Rating: {minutesToComplete} minutes</em>
           &nbsp;·&nbsp;
           <cite>By {user.username}</cite>
         </p>
